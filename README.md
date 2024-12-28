@@ -72,20 +72,20 @@ The Analysis leverages multiple datasets from Staples to understand consumer beh
 
 *Star Schema\
 *\
-![Star Schema](figures/StarSchema.png){width="448"}
+![Star Schema](FIGURES/StarSchema.png){width="448"}
 
 \
 *Snapshot of Our Dataset\
 *\
-![Dataset](figures/SnapshotDataset.png)
+![Dataset](FIGURES/SnapshotDataset.png)
 
 *Snapshot of Python code to connect and data import*
 
-![](figures/PythonCode.png){width="622"}\
+![](FIGURES/PythonCode.png){width="622"}\
 
 *Control Flow Diagram\
 \
-*![](figures/ControlFlow.png)
+*![](FIGURES/ControlFlow.png)
 
 SSIS is used to generate a star schema.
 
@@ -93,11 +93,11 @@ SSIS is used to generate a star schema.
 **\
 *Customer DFD*
 
-![](figures/CustomerDFD.png)
+![](FIGURES/CustomerDFD.png)
 
 *Order DFD*
 
-![](figures/OrderDFD.png)
+![](FIGURES/OrderDFD.png)
 
 *Derived Column On Time*\
 (Ship_Mode== "First Class" && (DATEDIFF("day",(DT_DBTIMESTAMP)Order_Date,(DT_DBTIMESTAMP)Ship_Date) \<= 2)) ? 1 : (Ship_Mode == "Second Class" && (DATEDIFF("day",(DT_DBTIMESTAMP)Order_Date,(DT_DBTIMESTAMP)Ship_Date) \<= 3)) ? 1 : (Ship_Mode == "Standard Class" && (DATEDIFF("day",(DT_DBTIMESTAMP)Order_Date,(DT_DBTIMESTAMP)Ship_Date) \<= 5)) ? 1 : (Ship_Mode == "Same Day" && DATEDIFF("day",(DT_DBTIMESTAMP)Order_Date,(DT_DBTIMESTAMP)Ship_Date) \<= 1) ? 1 : 0
@@ -106,45 +106,45 @@ SSIS is used to generate a star schema.
 DATEDIFF("DAY",(DT_DBTIMESTAMP)Order_Date,(DT_DBTIMESTAMP)Ship_Date)
 
 *FACT DFD*\
-![](figures/FactDFD.png)
+![](FIGURES/FactDFD.png)
 
 **Data Preparation**
 
 The dataset was successfully loaded into a panda DataFrame, which contains 10,194 entries and 20 columns, detailing order information, customer data, product categories, sales, quantities, discounts, and profits.
 
 Few uncertainties in the data were removed for clarity and uniformity.\
-![](figures/RemoveUncertainities.png)
+![](FIGURES/RemoveUncertainities.png)
 
 *Duplicate Removal*\
 Checked for duplicate rows in the data, identifying and removing a total of 5 duplicate entries.\
-![](figures/DuplicateRemoval.png)
+![](FIGURES/DuplicateRemoval.png)
 
-![](figures/DuplicateRemoval1.png)\
+![](FIGURES/DuplicateRemoval1.png)\
 \
 *Missing Values*\
 Identified missing values in columns 'Segment', 'Sales', and 'Quantity', with 50 missing entries each.
 
-![](figures/MissingValues.png)
+![](FIGURES/MissingValues.png)
 
 **Data Visualization**
 
 Several visualizations were created, including histogram for Quantity sold based on Sub-Category, and a scatter plot comparing sales and profit, providing visual insights into the data distributions and relationships between key variables. The visualizations which are generated for the Data preprocessing can be seen below.
 
 A histogram for 'Quantity' sold based on 'Sub-Category' distribution showed that the Sub-Category 'Binders' sold the most quantity among other categories.\
-![](figures/VisualCode.png)
+![](FIGURES/VisualCode.png)
 
-![](figures/VisualCodePlot.png)\
+![](FIGURES/VisualCodePlot.png)\
 \
 A scatter plot between 'Sales' and 'Profit' revealed the relationship between these two variables, highlighting the variance in profit for given sales figures and potential outliers or high-leverage points that could influence further analysis.\
-![](figures/ScatterPlotCode.png)
+![](FIGURES/ScatterPlotCode.png)
 
-![](figures/ScatterPlot.png)
+![](FIGURES/ScatterPlot.png)
 
 **Data Exploration**
 
 Exploratory Data Analysis (EDA) Descriptive Statistics: Calculated descriptive statistics, providing a summary of the central tendency, dispersion, and shape of the dataset's distribution. Descriptive statistics for 'Sales' and 'Profit' were included, offering insights into average sales and profit margins, as well as understanding the variability and distribution of these key metrics.
 
-![](figures/EDACode.png)
+![](FIGURES/EDACode.png)
 
 *Descriptive Statistics Results*\
 The average (mean) 'Sales' were approximately \$228, but the median (50th percentile) was much lower at \$53.91, indicating the presence of high-value sales transactions that skew the average.
@@ -153,11 +153,11 @@ The 'Profit' had a mean of approximately \$28.67 and a median of \$8.69, suggest
 
 The standard deviation for 'Profit' was relatively high, pointing to large variations in profitability across transactions.
 
-![](figures/EDACode1.png)
+![](FIGURES/EDACode1.png)
 
-![](figures/EDACode2.png)
+![](FIGURES/EDACode2.png)
 
-![](figures/EDACode3.png)
+![](FIGURES/EDACode3.png)
 
 **Data Transformation**
 
@@ -166,25 +166,25 @@ The standard deviation for 'Profit' was relatively high, pointing to large varia
 *\
 This technique converts categorical variables into a form that could be provided to machine learning algorithms to better predict the outcome. However, an error with the OneHotEncoder suggests there might have been a problem with this step.
 
-![](figures/OneHotEncoding.png)
+![](FIGURES/OneHotEncoding.png)
 
 *Standardization*\
 \
 We included a computation of z-scores for the 'Sales' column, which is a form of standardization. This process adjusts the data to have a mean of 0 and a standard deviation of 1, which is particularly useful for comparison between different datasets and for models that assume normally distributed data.
 
-![](figures/Standardization.png)
+![](FIGURES/Standardization.png)
 
 **Data Analysis and Results**
 
-![](figures/DataAnalysisResults1.png)
+![](FIGURES/DataAnalysisResults1.png)
 
 The visualization is a waterfall chart that displays the sales contributions of various sub-categories within a company. It aims to show how each sub-category contributes to the total sales, highlighting both positive and negative impacts on the overall financial performance.
 
-![](figures/Map.png)
+![](FIGURES/Map.png)
 
 The visualization is a geographical map of the United States displaying the sum of sales by state, differentiated by payment type---credit card, debit card, and digital wallet. Each state has pie charts overlaid on the map, where the size of each pie segment represents the proportion of sales from each payment method in that state. This map helps in identifying payment preferences across different regions and can be used to tailor marketing strategies, like targeted promotions and discounts, based on the preferred payment methods in each area.
 
-![](figures/LineGraph&BarGraph.png)
+![](FIGURES/LineGraph&BarGraph.png)
 
 The visualization consists of two parts:
 
@@ -192,7 +192,7 @@ Top Chart (Line Graph): Shows the sum of sales and last month's sales by month o
 
 Bottom Chart (Bar Graph): Displays the month-over-month (MoM) percentage change in sales during the same period. Positive values (shown in blue) indicate months where sales increased compared to the previous month, while negative values (shown in red) indicates a decrease. Overall, this visualization helps in understanding how sales fluctuated month to month over several years, providing insights that could be used to make strategic business decisions, optimize sales efforts, and forecast future trends.
 
-![](figures/DrilldownChart.png)
+![](FIGURES/DrilldownChart.png)
 
 The visualization is an interactive hierarchy chart, also known as a drill-down chart, used to display sales data over multiple years, broken down further into quarters and months for detailed analysis. The left side of the chart shows a timeline of annual sales totals, which can be expanded to reveal sales figures for each quarter within a year, and further into each month.
 
@@ -200,7 +200,7 @@ On the right side, the chart offers a geographical breakdown of sales by state a
 
 The purpose of this visualization is to provide a comprehensive view of sales trends over time and across different regions. This insight is crucial for identifying patterns, planning marketing strategies, and allocating resources efficiently based on where and when products are selling best.
 
-![](figures/DataTableChart.png)
+![](FIGURES/DataTableChart.png)
 
 The visualization displays a comprehensive analysis of sales data over several years. It consists of three parts:
 
@@ -208,7 +208,7 @@ Data Table: This table shows monthly sales data for each year, including actual 
 
 The combination of these elements in the visualization provides a clear overview of sales performance, highlighting where and when sales fell short of or exceeded targets. This kind of analysis is critical for businesses to understand sales trends, identify potential issues, and make informed decisions to improve future performance.
 
-![](figures/KeyInfluencers.png)
+![](FIGURES/KeyInfluencers.png)
 
 The visualization is focused on analyzing the impact of different shipping modes on the on-time delivery rate of orders. It clearly shows that 'Same Day' shipping significantly increases the likelihood of on-time delivery compared to other shipping options like 'Standard Class,' 'First Class,' and 'Second Class.'
 
