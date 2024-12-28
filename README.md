@@ -1,4 +1,4 @@
-# Customer-Sales-Analysis  ![](figures/CustomerSalesAnalysis.webp)
+# Customer-Sales-Analysis  ![](FIGURES/CustomerSalesAnalysis.webp)
 
 **Overview of Problem Statement**
 
@@ -68,7 +68,7 @@ The Analysis leverages multiple datasets from Staples to understand consumer beh
 
 *Dimension modeling process\
 *\
-![Dimension Modeling Process](figures/DimensionModeling.png)
+![Dimension Modeling Process](FIGURES/DimensionModeling.png)
 
 *Star Schema\
 *\
